@@ -2,23 +2,16 @@
 
 TODO: Write a gem description
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'voice_text_web_api_on_browser'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install voice_text_web_api_on_browser
-
 ## Usage
 
-TODO: Write usage instructions here
+```shell
+$ git clone git@github.com:niku/voice_text_web_api_on_browser.git
+$ cd voice_text_web_api_on_browser
+$ bundle
+$ VOICE_TEXT_API_TOKEN=[your_api_token_here] bundle exec rackup
+```
+
+and access to `http://localhost:9292`
 
 ## Contributing
 
