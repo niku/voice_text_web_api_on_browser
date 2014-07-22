@@ -11,7 +11,7 @@ $(function() {
     request.responseType = "arraybuffer";
     request.onload = onload;
     request.send(params);
-  }
+  };
 
   var startSound = function() {
     var context = new (window.AudioContext || window.webkitAudioContext)();
@@ -21,5 +21,5 @@ $(function() {
       source.connect(context.destination);
       source.start(0);
     });
-  }
+  };
 });
