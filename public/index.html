@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>voice text api on browser</title>
     <script src="assets/js/jquery-2.1.1.min.js"></script>
+    <script src="assets/js/show-range-value.js"></script>
     <script src="assets/js/post-voice.js"></script>
   </head>
     <body>
@@ -11,7 +12,7 @@
         <input type="text" name="text" value="こんにちは，世界">
         <div>
           話者名
-          <input type="radio" name="speaker" value="show">show
+          <input type="radio" name="speaker" value="show" checked="checked">show
           <input type="radio" name="speaker" value="haruka">haruka
           <input type="radio" name="speaker" value="hikari">hikari
           <input type="radio" name="speaker" value="takeru">takeru
@@ -24,8 +25,23 @@
         </div>
         <div>
           感情レベル
-          <input type="radio" name="emotion_level" value="1">1
-          <input type="radio" name="emotion_level" value="2">2
+          <input type="range" id="emotion" name="emotion_level" min="1" max="2" value="1">
+          <output name="emotionValue" for="emotion">1</output>
+        </div>
+        <div>
+          音の高低
+          <input type="range" id="pitch" name="pitch" min="50" max="200" value="100">
+          <output name="pitchValue" for="pitch">100</output>
+        </div>
+        <div>
+          話す速度
+          <input type="range" id="speed" name="speed" min="50" max="400" value="100">
+          <output name="speedValue" for="speed">100</output>
+        </div>
+        <div>
+          音量
+          <input type="range" id="volume" name="volume" min="50" max="200" value="100">
+          <output name="volumeValue" for="volume">100</output>
         </div>
         <input type="submit" value="send">
       </form>
