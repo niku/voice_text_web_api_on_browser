@@ -13,7 +13,7 @@ module VoiceTextWebApiOnBrowser
     end
 
     get "/" do
-      erb :index
+      send_file File.join(settings.public_folder, "index.html")
     end
 
     post "/voice" do
@@ -28,69 +28,6 @@ module VoiceTextWebApiOnBrowser
         end
       end
       @voice_text_api.tts(text, speaker, Hash[alist])
-    end
-
-    template :index do
-      <<__EOD__
-<html lang-"ja">
-<head>
-<meta charset="UTF-8">
-<title>voice text api on browser</title>
-<script src="assets/js/jquery-2.1.1.min.js"></script>
-<head>
-<body>
-<form id="voiceform">
-<input type="text" name="text" value="こんにちは，世界">
-<div>
-話者名
-<input type="radio" name="speaker" value="show">show
-<input type="radio" name="speaker" value="haruka">haruka
-<input type="radio" name="speaker" value="hikari">hikari
-<input type="radio" name="speaker" value="takeru">takeru
-</div>
-<div>
-感情カテゴリ
-<input type="radio" name="emotion" value="happiness">happiness
-<input type="radio" name="emotion" value="anger">anger
-<input type="radio" name="emotion" value="sadness">sadness
-</div>
-<div>
-感情レベル
-<input type="radio" name="emotion_level" value="1">1
-<input type="radio" name="emotion_level" value="2">2
-</div>
-<input type="submit" value="send">
-</form>
-<script>
-$(function() {
-  $("#voiceform").on("submit", function(e) {
-    e.preventDefault();
-    loadSound("voice", $(this).serialize(), startSound);
-  });
-
-  var loadSound = function(url, params, onload) {
-    var request = new XMLHttpRequest();
-    request.open("POST", url, true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.responseType = "arraybuffer";
-    request.onload = onload;
-    request.send(params);
-  }
-
-  var startSound = function() {
-    var context = new (window.AudioContext || window.webkitAudioContext)();
-    context.decodeAudioData(this.response, function(buffer) {
-      var source = context.createBufferSource();
-      source.buffer = buffer;
-      source.connect(context.destination);
-      source.start(0);
-    });
-  }
-});
-</script>
-</body>
-</html>
-__EOD__
     end
   end
 end
