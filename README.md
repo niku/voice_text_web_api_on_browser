@@ -1,6 +1,6 @@
 # VoiceTextWebApiOnBrowser
 
-TODO: Write a gem description
+Your browser talks Japanese using [https://cloud.voicetext.jp/webapi](VoiceText Web API).
 
 ## Usage
 
