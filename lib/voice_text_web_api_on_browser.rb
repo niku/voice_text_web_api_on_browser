@@ -22,17 +22,23 @@ module VoiceTextWebApiOnBrowser
     end
 
     post "/voice" do
-      content_type "audio/wave"
-      text = params.delete("text")
-      speaker = params.delete("speaker").to_sym
-      alist = params.map do |k, v|
-        if %w(emotion_level pitch speed volume).include?(k)
-          [k.to_sym, v.to_i]
-        else
-          [k.to_sym, v]
+      begin
+        text = params.delete("text")
+        speaker = params.delete("speaker").to_sym
+        alist = params.map do |k, v|
+          if %w(emotion_level pitch speed volume).include?(k)
+            [k.to_sym, v.to_i]
+          else
+            [k.to_sym, v]
+          end
         end
+        voice = @voice_text_api.tts(text, speaker, Hash[alist])
+        content_type "audio/wave"
+        body voice
+      rescue => e
+        content_type "application/json"
+        halt 503, e.message
       end
-      @voice_text_api.tts(text, speaker, Hash[alist])
     end
   end
 end
