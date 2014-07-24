@@ -1,6 +1,6 @@
 # VoiceTextWebApiOnBrowser
 
-Your browser talks Japanese using [https://cloud.voicetext.jp/webapi](VoiceText Web API).
+Your browser talks Japanese using [VoiceText Web API](https://cloud.voicetext.jp/webapi).
 
 ## Usage
 
