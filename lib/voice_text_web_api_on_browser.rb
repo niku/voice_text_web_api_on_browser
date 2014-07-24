@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 require "voice_text_web_api_on_browser/version"
 require "sinatra/base"
-require "sinatra/reloader"
 require "voice_text_api"
 
 module VoiceTextWebApiOnBrowser
   class App < Sinatra::Application
     configure :development do
+      require "sinatra/reloader"
       register Sinatra::Reloader
     end
 
